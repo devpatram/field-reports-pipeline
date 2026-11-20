@@ -1,0 +1,11 @@
+[
+  {"id": "S-1001", "submitted_at": "2026-11-16T19:05:00", "project": "700101", "technician": "Alex Rivera", "shift_date": "2026-11-16", "shift": "day", "hours": 10, "equipment": "Filler F-2", "work_done": "Replaced worn drive belt, adjusted tension.", "issues": "Spare belts low: 1 left."},
+  {"id": "S-1002", "submitted_at": "2026-11-16T19:40:00", "project": "700101", "technician": "Sam Okafor", "shift_date": "2026-11-16", "shift": "day", "hours": 10, "equipment": "Capper C-1", "work_done": "PM on capper heads 1-6, torque checked.", "issues": ""},
+  {"id": "S-1003", "submitted_at": "2026-11-17T07:10:00", "project": "700205", "technician": "Jordan Lee", "shift_date": "2026-11-16", "shift": "night", "hours": 12, "equipment": "Palletizer P-4", "work_done": "Cleared photo eye fault, cleaned lens.", "issues": "Fault came back twice."},
+  {"id": "S-1004", "submitted_at": "2026-11-16T20:00:00", "project": "700999", "technician": "Priya Shah", "shift_date": "2026-11-16", "shift": "day", "hours": 9, "equipment": "Press PR-9", "work_done": "Hydraulic hose replaced.", "issues": ""},
+  {"id": "S-1005", "submitted_at": "2026-11-16T21:15:00", "project": "700311", "technician": "Priya Shah", "shift_date": "2026-11-16", "shift": "day", "hours": 9, "equipment": "Press PR-9", "work_done": "Hydraulic hose replaced, leak checked at 2,000 psi.", "issues": ""},
+  {"id": "S-1006", "submitted_at": "2026-11-18T09:30:00", "project": "700101", "technician": "Alex Rivera", "shift_date": "2026-11-16", "shift": "night", "hours": 4, "equipment": "Filler F-2", "work_done": "Call-in: belt tracking adjusted.", "issues": ""},
+  {"id": "S-1007", "submitted_at": "2026-11-16T22:00:00", "project": "700205", "technician": "Chris Wong", "shift_date": "2026-11-16", "shift": "day", "hours": 8, "equipment": "Wrapper W-1", "work_done": "Film carriage aligned.", "issues": ""},
+  {"id": "S-1008", "submitted_at": "2026-11-16T22:30:00", "project": "700102", "technician": "Chris Wong", "shift_date": "2026-11-16", "shift": "day", "hours": 18, "equipment": "", "work_done": "", "issues": ""},
+  {"id": "S-1002", "submitted_at": "2026-11-16T19:41:00", "project": "700101", "technician": "Sam Okafor", "shift_date": "2026-11-16", "shift": "day", "hours": 10, "equipment": "Capper C-1", "work_done": "PM on capper heads 1-6, torque checked.", "issues": ""}
+]

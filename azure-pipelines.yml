@@ -1,0 +1,43 @@
+# Azure DevOps: the same run, on a schedule and on demand (a low-code flow can queue it through the REST API).
+trigger: none
+
+schedules:
+  - cron: "15 11 * * *"   # 06:15 US Central (UTC here), after night shift submissions are in
+    displayName: Daily reports
+    branches:
+      include: [main]
+    always: true
+
+parameters:
+  - name: dryRun
+    displayName: Validate only, write nothing
+    type: boolean
+    default: false
+
+variables:
+  - name: dryRunFlag
+    ${{ if eq(parameters.dryRun, true) }}:
+      value: --dry-run
+    ${{ else }}:
+      value: ""
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: "3.12"
+  - script: pip install -r requirements-dev.txt && pytest -q
+    displayName: Tests must pass before a run
+  # In production the input comes from the capture system's export and the run log lives in durable storage;
+  # here both are files in the repo so the pipeline runs as-is.
+  - script: |
+      python -m fieldreports.run --input data/submissions.json --out "$(Build.ArtifactStagingDirectory)/reports" \
+        $(dryRunFlag) || code=$?
+      if [ "${code:-0}" = "2" ]; then echo "##vso[task.logissue type=warning]Run finished with exceptions for review"; exit 0; fi
+      exit ${code:-0}
+    displayName: Build reports
+  - publish: $(Build.ArtifactStagingDirectory)/reports
+    artifact: reports
+    condition: always()

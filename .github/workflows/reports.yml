@@ -1,0 +1,33 @@
+# GitHub Actions: the same run as azure-pipelines.yml, so the pattern does not depend on one CI vendor.
+name: reports
+
+on:
+  schedule:
+    - cron: "15 11 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Validate only, write nothing
+        type: boolean
+        default: false
+
+jobs:
+  build-reports:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-dev.txt && pytest -q
+      - name: Build reports
+        run: |
+          python -m fieldreports.run --input data/submissions.json --out reports \
+            ${{ inputs.dry_run && '--dry-run' || '' }} || code=$?
+          if [ "${code:-0}" = "2" ]; then echo "::warning::Run finished with exceptions for review"; exit 0; fi
+          exit ${code:-0}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reports
+          path: reports

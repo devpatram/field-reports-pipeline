@@ -1,0 +1,2 @@
+# The pipeline itself uses only the standard library.
+pytest>=8
